@@ -13,7 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Artists.Domain\Artists.Domain.csproj" />
     <ProjectReference Include="..\..\..\..\src\Services\Artists\Artists.API\Artists.API.csproj" />
   </ItemGroup>
 
