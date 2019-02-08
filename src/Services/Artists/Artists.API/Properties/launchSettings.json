@@ -3,8 +3,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:3795",
-      "sslPort": 44300
+      "applicationUrl": "http://localhost:3717",
+      "sslPort": 44303
     }
   },
   "$schema": "http://json.schemastore.org/launchsettings.json",
@@ -29,7 +29,10 @@
     "Docker": {
       "commandName": "Docker",
       "launchBrowser": true,
-      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/api/values"
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/api/values",
+      "httpPort": 3718,
+      "useSSL": true,
+      "sslPort": 44304
     }
   }
 }
