@@ -40,9 +40,10 @@ namespace Artists.API
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
             Configuration = configuration;
+            Environment = env;
         }
 
         public IConfiguration Configuration { get; }
@@ -68,11 +69,11 @@ namespace Artists.API
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddHttpClient<IEventApiClient, EventApiClient>()
-                .SetHandlerLifetime(TimeSpan.FromMinutes(5))  //Sample. Default lifetime is 2 minutes
-                .AddHttpMessageHandler<HttpClientAuthorizationDelegatingHandler>()
-                .AddPolicyHandler(GetRetryPolicy())
-                .AddPolicyHandler(GetCircuitBreakerPolicy());
+            //services.AddHttpClient<IEventApiClient, EventApiClient>()
+            //    .SetHandlerLifetime(TimeSpan.FromMinutes(5))  //Sample. Default lifetime is 2 minutes
+            //    .AddHttpMessageHandler<HttpClientAuthorizationDelegatingHandler>()
+            //    .AddPolicyHandler(GetRetryPolicy())
+            //    .AddPolicyHandler(GetCircuitBreakerPolicy());
 
             services.AddMvc(options => options.Filters.Add(typeof(HttpGlobalExceptionFilter)))
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
@@ -86,9 +87,8 @@ namespace Artists.API
 
             services.AddAuthentication(IISDefaults.AuthenticationScheme);
 
-            var connection = @"Server=(localdb)\mssqllocaldb;Database=MusicStore;Trusted_Connection=True;ConnectRetryCount=0";
             services.AddDbContext<ArtistContext>
-                (options => options.UseSqlServer(connection));
+                (options => options.UseSqlServer(Configuration.GetConnectionString(Keys.ArtistContextConnectionString)));
 
             services.AddDbContext<ArtistContext>(
               options => options.UseSqlServer(
@@ -102,7 +102,7 @@ namespace Artists.API
            .AddScoped<IETagCache, ETagCache>() //https://www.carlrippon.com/scalable-and-performant-asp-net-core-web-apis-server-caching/
            .AddSingleton(Environment)
            .AddTransient<IIdentityService, IdentityService>()
-           .AddScoped<IEventApiClient, EventApiClient>()
+           //.AddScoped<IEventApiClient, EventApiClient>()
            .AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidatorBehavior<,>))
            .AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>))
            .AddTransient<IEmailService, EmailService>()
@@ -191,15 +191,7 @@ namespace Artists.API
             app.UseSwagger();
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
-            app.UseSwaggerUI(
-                c => c.SwaggerEndpoint(
-                    (string.IsNullOrWhiteSpace(Configuration["VirtualFolder"])
-                        ? string.Empty
-                        : "/" + Configuration["VirtualFolder"].ToString().Replace("/", string.Empty)) +
-                    "/swagger/v1/swagger.json",
-                    "Artist.API V1"
-                )
-            );
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Artist.API V1"));
 
             app.UseHttpsRedirection();
             app.UseCors("Everything");

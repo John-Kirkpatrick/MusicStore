@@ -8,6 +8,6 @@ namespace Artists.Domain.Application.Constants
     {
         public static string ArtistContextConnectionString = "ArtistContextConnectionString";
 
-        public static string DistributedCacheConnectionName { get; set; }
+        public static string DistributedCacheConnectionName = "DistributedCacheConnectionString";
     }
 }
