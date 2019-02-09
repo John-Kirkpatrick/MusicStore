@@ -9,12 +9,12 @@ namespace Artists.Domain.SeedWork
     {
         public string Name { get; private set; }
 
-        public int Id { get; private set; }
+        public Guid Id { get; private set; }
 
         protected Enumeration()
         { }
 
-        protected Enumeration(int id, string name)
+        protected Enumeration(Guid id, string name)
         {
             Id = id;
             Name = name;
@@ -44,15 +44,9 @@ namespace Artists.Domain.SeedWork
 
         public override int GetHashCode() => Id.GetHashCode();
 
-        public static int AbsoluteDifference(Enumeration firstValue, Enumeration secondValue)
+        public static T FromValue<T>(Guid value) where T : Enumeration
         {
-            var absoluteDifference = Math.Abs(firstValue.Id - secondValue.Id);
-            return absoluteDifference;
-        }
-
-        public static T FromValue<T>(int value) where T : Enumeration
-        {
-            var matchingItem = Parse<T, int>(value, "value", item => item.Id == value);
+            var matchingItem = Parse<T, Guid>(value, "value", item => item.Id == value);
             return matchingItem;
         }
 

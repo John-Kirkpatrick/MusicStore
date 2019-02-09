@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Artists.Domain.Application.Config;
 using IdentityModel.Client;
+using Infrastructure.Caching;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Caching.Distributed;

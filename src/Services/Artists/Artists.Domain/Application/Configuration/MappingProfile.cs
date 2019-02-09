@@ -29,7 +29,7 @@ namespace Artists.Domain.Application.Config
         private void MapArtists()
         {
             CreateMap<Artist, ArtistDTO>()
-              .ForMember(x => x.Id, conf => conf.MapFrom(d => d.ArtistId));
+              .ForMember(x => x.Id, conf => conf.MapFrom(d => d.Id));
         }
 
         #endregion

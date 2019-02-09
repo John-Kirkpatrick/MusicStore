@@ -6,7 +6,8 @@ using Newtonsoft.Json;
 
 #endregion
 
-namespace Artists.Domain.Application.Middlewares {
+namespace Infrastructure.Caching
+{
     public interface IETagCache {
         #region Public Methods
 

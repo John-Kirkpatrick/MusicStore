@@ -4,7 +4,7 @@ using System;
 
 #endregion
 
-namespace Artists.Domain.Application.Extensions
+namespace Infrastructure.Extensions
 {
     public static class DateExtensions
     {

@@ -2,6 +2,7 @@
 
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
+using Artists.Domain.Application;
 using Artists.Domain.Application.Exceptions;
 using Artists.Domain.Services;
 using Microsoft.AspNetCore.Hosting;
@@ -13,7 +14,8 @@ using MimeKit;
 
 #endregion
 
-namespace Artists.Domain.Application.Filters {
+namespace Artists.Domain
+{
     [ExcludeFromCodeCoverage]
     public class HttpGlobalExceptionFilter : IExceptionFilter {
         #region Private Fields

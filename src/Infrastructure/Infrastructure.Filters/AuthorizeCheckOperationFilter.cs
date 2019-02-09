@@ -9,7 +9,7 @@ using System.Linq;
 
 #endregion
 
-namespace Artists.Domain.Application.Filters
+namespace Infrastructure.Filters
 {
     [ExcludeFromCodeCoverage]
     public class AuthorizeCheckOperationFilter : IOperationFilter

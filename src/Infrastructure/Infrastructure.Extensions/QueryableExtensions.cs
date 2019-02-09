@@ -7,7 +7,7 @@ using System.Reflection;
 
 #endregion
 
-namespace Domain.Application.Extensions
+namespace Infrastructure.Extensions
 {
     /// <summary>
     ///     Contains extension methods for working with IQueryables.

@@ -5,7 +5,8 @@ using System.Linq;
 
 #endregion
 
-namespace Artists.Domain.Application.Extensions {
+namespace Infrastructure.Extensions
+{
     public static class StringExtensions {
         #region Public Methods
 

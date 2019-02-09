@@ -28,4 +28,8 @@
     <Folder Include="Queries\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Infrastructure\Infrastructure.Caching\Infrastructure.Caching.csproj" />
+  </ItemGroup>
+
 </Project>

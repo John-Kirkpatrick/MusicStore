@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Artists.Domain.Application.Config;
 using Artists.Domain.Application.Middlewares;
+using Infrastructure.Caching;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
