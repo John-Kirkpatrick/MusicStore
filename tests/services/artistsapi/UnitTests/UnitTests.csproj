@@ -18,8 +18,8 @@
 
   <ItemGroup>
     <Folder Include="Domain\" />
-    <Folder Include="API\Controllers\" />
-    <Folder Include="API\" />
+    <Folder Include="Services\Controllers\" />
+    <Folder Include="Services\Artists\" />
   </ItemGroup>
 
 </Project>

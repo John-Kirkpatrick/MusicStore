@@ -23,6 +23,7 @@
     <Folder Include="Application\Configuration\" />
     <Folder Include="Commands\" />
     <Folder Include="Behaviors\" />
+    <Folder Include="SeedWork\" />
     <Folder Include="Services\" />
     <Folder Include="Queries\" />
   </ItemGroup>
