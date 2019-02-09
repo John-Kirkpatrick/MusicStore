@@ -23,7 +23,7 @@ namespace Artists.Test.Objects
         [TestMethod]
         public void dto_maps_correct()
         {
-            Artist artist = new Artist() { ArtistId = 1, Name = "Some Artist" };
+            Artist artist = new Artist() { ArtistId = Guid.NewGuid(), Name = "Some Artist" };
 
             ArtistDTO dto = _mapper.Map<Artist, ArtistDTO>(artist);
 

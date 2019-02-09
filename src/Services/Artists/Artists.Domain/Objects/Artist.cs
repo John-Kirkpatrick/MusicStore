@@ -7,7 +7,7 @@ namespace Artists.Domain.Objects
 {
     public class Artist : Entity, IAggregateRoot
     {
-        public int ArtistId { get; set; }
+        public Guid ArtistId { get; set; }
         public string Name { get; set; }
     }
 }
