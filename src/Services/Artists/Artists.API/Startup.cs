@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Artists.Domain;
 using Artists.Domain.Application.Config;
+using Artists.Domain.Application.Configuration;
 using Artists.Domain.Application.Constants;
 using Artists.Domain.Application.Middlewares;
 using Artists.Domain.Behaviors;

@@ -13,6 +13,22 @@ namespace Artists.Domain.Objects
         [Key]
         public Guid Id { get; set; }
 
-        public string Name { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string FirstName { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string LastName { get; set; }
+
+        public DateTime? DateOfBirth { get; set; }
+
+        public Guid BandId { get; set; }
+
+        //[ForeignKey("BandId")]
+        public Band Band { get; set; }
+
+        [Required]
+        public bool IsActive { get; set; } = true;
     }
 }

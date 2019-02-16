@@ -1,13 +1,12 @@
 ﻿#region references
 
-using System;
 using Artists.Domain.Objects;
 using Artists.Domain.Objects.DTO;
 using AutoMapper;
 
 #endregion
 
-namespace Artists.Domain.Application.Config
+namespace Artists.Domain.Application.Configuration
 {
     public class MappingProfile : Profile
     {
@@ -29,7 +28,7 @@ namespace Artists.Domain.Application.Config
         private void MapArtists()
         {
             CreateMap<Artist, ArtistDTO>()
-              .ForMember(x => x.Id, conf => conf.MapFrom(d => d.Id));
+              .ForMember(x => x.Name, conf => conf.MapFrom(d => $"{d.FirstName} {d.LastName}"));
         }
 
         #endregion

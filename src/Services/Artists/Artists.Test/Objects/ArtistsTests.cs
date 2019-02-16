@@ -6,6 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Artists.Domain.Application.Configuration;
 
 namespace Artists.Test.Objects
 {
@@ -23,11 +24,13 @@ namespace Artists.Test.Objects
         [TestMethod]
         public void dto_maps_correct()
         {
-            Artist artist = new Artist() { Id = Guid.NewGuid(), Name = "Some Artist" };
+            Guid newId = Guid.NewGuid();
+
+            Artist artist = new Artist() { Id = newId, FirstName = "Some", LastName = "Artist"};
 
             ArtistDTO dto = _mapper.Map<Artist, ArtistDTO>(artist);
 
-            Assert.AreEqual(1, dto.Id);
+            Assert.AreEqual(newId, dto.Id);
             Assert.AreEqual("Some Artist", dto.Name);
 
         }

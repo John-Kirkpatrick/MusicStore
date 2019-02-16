@@ -19,6 +19,8 @@ namespace Artists.Domain.Contexts
 
         public DbSet<Artist> Artists { get; set; }
 
+        public DbSet<Band> Bands { get; set; }
+
         private IDbContextTransaction _currentTransaction;
 
         public IDbContextTransaction GetCurrentTransaction => _currentTransaction;

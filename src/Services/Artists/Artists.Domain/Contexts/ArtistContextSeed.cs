@@ -12,6 +12,9 @@ namespace Artists.Domain.Contexts
 {
     public class ArtistContextSeed
     {
+
+        private ArtistContext _context;
+
         public async Task SeedAsync(ArtistContext context, 
                                     IHostingEnvironment env,
                                     ILogger<ArtistContextSeed> logger, 
@@ -19,9 +22,16 @@ namespace Artists.Domain.Contexts
                                     int? retry = 0)
         {
             int retryForAvailability = retry.Value;
+            _context = context ?? throw new ArgumentException($"{nameof(ArtistContext)} is required");
 
             try
             {
+                if (!context.Bands.Any())
+                {
+                    context.Bands.AddRange(SetDefaultBands());
+                    await context.SaveChangesAsync();
+                }
+
                 if (!context.Artists.Any())
                 {
                     context.Artists.AddRange(SetDefaultArtists());
@@ -42,36 +52,88 @@ namespace Artists.Domain.Contexts
             }
         }
 
-        private IEnumerable<Artist> SetDefaultArtists()
+        private IEnumerable<Band> SetDefaultBands()
         {
-            Artist artist1 = new Artist()
+            Band band1 = new Band()
             {
                 Id = Guid.NewGuid(),
                 Name = "Queen"
             };
 
-            Artist artist2 = new Artist()
+            Band band2 = new Band()
             {
                 Id = Guid.NewGuid(),
                 Name = "David Bowie"
             };
 
-            Artist artist3 = new Artist()
+            Band band3 = new Band()
             {
                 Id = Guid.NewGuid(),
                 Name = "Rolling Stones"
             };
 
-            Artist artist4 = new Artist()
+            Band band4 = new Band()
             {
                 Id = Guid.NewGuid(),
                 Name = "Radiohead"
             };
 
-            Artist artist5 = new Artist()
+            Band band5 = new Band()
             {
                 Id = Guid.NewGuid(),
                 Name = "Beatles"
+            };
+
+            return new List<Band>()
+            {
+                band1,
+                band2,
+                band3,
+                band4,
+                band5
+            };
+        }
+
+        private IEnumerable<Artist> SetDefaultArtists()
+        {
+            Artist artist1 = new Artist()
+            {
+                Id = Guid.NewGuid(),
+                FirstName = "Freddy",
+                LastName = "Mercury",
+                BandId = _context.Bands.First(x => x.Name == "Queen").Id
+            };
+
+            Artist artist2 = new Artist()
+            {
+                Id = Guid.NewGuid(),
+                FirstName = "Robbie",
+                LastName = "Williams",
+                BandId = _context.Bands.First(x => x.Name == "Queen").Id
+            };
+
+            Artist artist3 = new Artist()
+            {
+                Id = Guid.NewGuid(),
+                FirstName = "Mick",
+                LastName = "Jagger",
+                BandId = _context.Bands.First(x => x.Name == "Rolling Stones").Id
+            };
+
+            Artist artist4 = new Artist()
+            {
+                Id = Guid.NewGuid(),
+                FirstName = "Paul",
+                LastName = "McCartney",
+                BandId = _context.Bands.First(x => x.Name == "Rolling Stones").Id
+            };
+
+            Artist artist5 = new Artist()
+            {
+                Id = Guid.NewGuid(),
+                FirstName = "John",
+                LastName = "Lennon",
+                BandId = _context.Bands.First(x => x.Name == "Rolling Stones").Id
             };
 
             return new List<Artist>()
